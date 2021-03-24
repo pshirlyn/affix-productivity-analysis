@@ -6,6 +6,8 @@ summary_file = "-eng-us-all-1gram-20120701.summary.txt"
 df = pd.read_csv("ity"+summary_file, sep='\t', header=(0))
 df_ness = pd.read_csv("ness"+summary_file, sep='\t')
 df_ment = pd.read_csv("ment"+summary_file, sep='\t', header=(0))
+df_wise = pd.read_csv("wise"+summary_file, sep='\t', header=(0))
+
 
 def endswith(x):
     if not isinstance(x, str):
@@ -16,7 +18,6 @@ pd.set_option('display.max_columns', None)
 
 def plot(df, ax, label):
     endings = df.loc[df['Base Phon'].apply(endswith)]
-    print(endings)
 
     value_counts = df['First Attested'].value_counts()
     flipped = pd.Series(data=value_counts.index, index=value_counts.values)
@@ -28,8 +29,9 @@ def plot(df, ax, label):
 
 fig = plt.figure()
 ax=plt.subplot(111)
-plot(df_ness, ax, "ness")
-plot(df, ax, "ity")
-plot(df_ment, ax, "ment")
+# plot(df_ness, ax, "ness")
+# plot(df, ax, "ity")
+# plot(df_ment, ax, "ment")
+plot(df_wise, ax, "wise")
 ax.legend()
 plt.show()
